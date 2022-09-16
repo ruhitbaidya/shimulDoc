@@ -27,7 +27,7 @@
             </div>
           </nav>
     </section>
-    <section>
+    <section id="formAllClass" class="pb-5">
         <div class="container">
             
             <div class="row">
@@ -37,47 +37,59 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-primary" role="alert">
-                        A simple primary alert—check it out!
+                    <div class="alert alert-succes" role="alert">
+                        &nbsp;
                       </div>
                 </div>
             </div>
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <label for="ids">ID</label>
-                    <input type="text" id="ids" class="form-control idFi" placeholder="Id" readonly>
+            <form id="formSubmit">
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="ids">ID</label>
+                        <input type="text" id="ids" class="form-control idFi" placeholder="Id" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dates">DATE</label>
+                        <input type="date" id="dates" class="form-control datessT" placeholder="Date" >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Depertment</label>
+                        <select class="form-select deperments" aria-label="Default select example" id="selects">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="dates">DATE</label>
-                    <input type="text" id="dates" class="form-control datessT" placeholder="Date" readonly>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="name">NAME</label>
+                        <input type="text" id="name" class="form-control names" placeholder="Name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="policy">PPLICY NO</label>
+                        <input type="number" id="policy" class="form-control policys" placeholder="Policy No">
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="">Depertment</label>
-                    <select class="form-select deperments" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="subject">SUBJECT</label>
+                        <input type="text" id="subject" class="form-control subjects" placeholder="Subject">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone">PHONE NUMBER</label>
+                        <input type="number" id="phone" class="form-control phoneNumber" placeholder="Phone Number">
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <label for="name">NAME</label>
-                    <input type="text" id="name" class="form-control names" placeholder="Name">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-grid gap-2">
+                            <button id="submits" class="btn btn-primary" type="button">Submit</button>
+                          </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="policy">PPLICY NO</label>
-                    <input type="number" id="policy" class="form-control policys" placeholder="Policy No">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="button">Submit</button>
-                      </div>
-                </div>
-            </div>
+            </form>
         </div>
     </section>
 
