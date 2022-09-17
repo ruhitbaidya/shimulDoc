@@ -1,16 +1,117 @@
+// page action
+let mainContent = document.querySelector('#mainContent');
+let formContent = document.querySelector('#formContent');
+let formPage = document.querySelector('#formPage');
+let contentPage = document.querySelector('#contentPage');
+formPage.addEventListener('click', function(){
+    formContent.classList.add('d-none');
+    mainContent.classList.remove('d-none');
+    mainContent.classList.add('d-block');
+});
+contentPage.addEventListener('click', function(){
+    formContent.classList.add('d-block');
+    formContent.classList.remove('d-none');
+    mainContent.classList.add('d-block');
+    document.location.reload();
+});
+
+
+
+
 // all js code here
 
 let formallclass = document.querySelector('#formAllClass');
-let forms = formallclass.querySelector('#submits');
-let ids = formallclass.querySelector('.idFi');
-let dates = formallclass.querySelector('.datessT');
-let selects = formallclass.querySelector('#selects');
-let names = formallclass.querySelector('.names');
-let policys = formallclass.querySelector('.policys');
-let subjects = formallclass.querySelector('.subjects');
-let phoneNumber = formallclass.querySelector('.phoneNumber');
+let forms = document.querySelector('#formSubmit');
+let ids = document.querySelector('.idFi');
+let dates = document.querySelector('.datessT');
+let selects = document.querySelector('#selects');
+let names = document.querySelector('.names');
+let policys = document.querySelector('.policys');
+let subjects = document.querySelector('.subjects');
+let phoneNumber = document.querySelector('.phoneNumber');
+let displayDatas = document.querySelector('#loadContent');
+let alertShow = document.querySelector('#alert-show');
+
 
 forms.addEventListener('submit', function(e){
-    console.log('Print');
     e.preventDefault();
+    if(ids.value === '' || dates.value === '' || selects.vlaue === 'Open this select menu' || names.value === '' || policys.value === '' || subjects.value === ''){
+        alertShow.textContent = 'please FillUp All The Fields';
+        alertShow.classList.add('alert-danger')
+        alertShow.classList.remove('alert-success')
+    }else{
+        acceptData();
+    }
+});
+
+let allData = [];
+
+function acceptData(){
+    let receiveData = {
+        ID : ids.value,
+        DATE : dates.value,
+        SELECT : selects.value,
+        NAME : names.value,
+        POLICY : policys.value,
+        SUBJ : subjects.value,
+        PNONE : phoneNumber.value
+    }
+    allData.push(receiveData);
+    localStorage.setItem('userData', JSON.stringify(allData));
+    displayData()
+    alertShow.textContent = 'Data Add SuccessFully';
+    alertShow.classList.add('alert-success')
+    alertShow.classList.remove('alert-danger')
+    clearFields()
+}
+
+function clearFields(){
+    ids.value = ''
+    dates.value = ''
+    names.value = ''
+    policys.value = ''
+    subjects.value = ''
+    phoneNumber.value = ''
+}
+
+function displayData(){
+    displayDatas.innerHTML = '';
+    ids.value = allData.length + 1;
+    allData.map((data, index)=>{
+        displayDatas.innerHTML += `
+            <tr id=${index}>
+                <td>${data.ID}</td>
+                <td>${data.NAME}</td>
+                <td>${data.POLICY}</td>
+                <td>${data.SELECT}</td>
+                <td>${data.DATE}</td>
+                <td>${data.SUBJ}</td>
+                <td>${data.PNONE}</td>
+                <td><button onclick="deleteData(this)" title="Delete This Item" class="btn btn-light">X</button></td>
+            </tr>
+        ` 
+    });
+ 
+}
+
+function deleteData(e){
+    e.parentElement.parentElement.remove();
+    allData.splice(e.parentElement.parentElement.id, 1);
+    localStorage.setItem('userData', JSON.stringify(allData));
+}
+(()=>{
+    allData = JSON.parse(localStorage.getItem('userData')) || [];
+    displayData();
+})()
+
+
+// content print 
+// print preview
+let mainContentPrint = document.querySelector('#mainContentPrint');
+let printPage = document.querySelector('#printPage');
+printPage.addEventListener('click', function(){
+    mainContentPrint.classList.add('d-block')
+    formContent.classList.add('d-block');
+    formContent.classList.remove('d-none');
+    mainContent.classList.add('d-block');
 });
