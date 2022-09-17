@@ -60,7 +60,7 @@ function acceptData(){
         SELECT : selects.value,
         NAME : names.value,
         POLICY : policys.value,
-        SUBJ : subjects.value,
+        SUBJ : subjects.value + '/-',
         PNONE : phoneNumber.value
     }
     allData.push(receiveData);
@@ -92,8 +92,8 @@ function displayData(){
                 <td>${data.POLICY}</td>
                 <td>${data.SELECT}</td>
                 <td>${data.DATE}</td>
-                <td>${data.SUBJ}</td>
                 <td>${data.PNONE}</td>
+                <td>${data.SUBJ}</td>
                 <td><button onclick="deleteData(this)" title="Delete This Item" class="btn btn-light">X</button></td>
             </tr>
         ` 
@@ -104,8 +104,8 @@ function displayData(){
                 <td>${data.POLICY}</td>
                 <td>${data.SELECT}</td>
                 <td>${data.DATE}</td>
-                <td>${data.SUBJ}</td>
                 <td>${data.PNONE}</td>
+                <td>${data.SUBJ}Taka</td>
             </tr>
         `
     });
