@@ -3,6 +3,8 @@ let mainContent = document.querySelector('#mainContent');
 let formContent = document.querySelector('#formContent');
 let formPage = document.querySelector('#formPage');
 let contentPage = document.querySelector('#contentPage');
+let printPage = document.querySelector('#printPage');
+let mainContentPrint = document.querySelector('#mainContentPrint');
 formPage.addEventListener('click', function(){
     formContent.classList.add('d-none');
     mainContent.classList.remove('d-none');
@@ -13,6 +15,11 @@ contentPage.addEventListener('click', function(){
     formContent.classList.remove('d-none');
     mainContent.classList.add('d-block');
     document.location.reload();
+});
+printPage.addEventListener('click', function(){
+    mainContentPrint.classList.add('d-block');
+    mainContentPrint.classList.remove('d-none');
+    mainContent.classList.add('d-none');
 });
 
 
@@ -31,7 +38,7 @@ let subjects = document.querySelector('.subjects');
 let phoneNumber = document.querySelector('.phoneNumber');
 let displayDatas = document.querySelector('#loadContent');
 let alertShow = document.querySelector('#alert-show');
-
+let loadContentPrint = document.querySelector('#loadContentPrint');
 
 forms.addEventListener('submit', function(e){
     e.preventDefault();
@@ -66,7 +73,6 @@ function acceptData(){
 }
 
 function clearFields(){
-    ids.value = ''
     dates.value = ''
     names.value = ''
     policys.value = ''
@@ -76,6 +82,7 @@ function clearFields(){
 
 function displayData(){
     displayDatas.innerHTML = '';
+    loadContentPrint.innerHTML = '',
     ids.value = allData.length + 1;
     allData.map((data, index)=>{
         displayDatas.innerHTML += `
@@ -90,6 +97,17 @@ function displayData(){
                 <td><button onclick="deleteData(this)" title="Delete This Item" class="btn btn-light">X</button></td>
             </tr>
         ` 
+        loadContentPrint.innerHTML += `
+        <tr id=${index}>
+                <td>${data.ID}</td>
+                <td>${data.NAME}</td>
+                <td>${data.POLICY}</td>
+                <td>${data.SELECT}</td>
+                <td>${data.DATE}</td>
+                <td>${data.SUBJ}</td>
+                <td>${data.PNONE}</td>
+            </tr>
+        `
     });
  
 }
@@ -98,10 +116,14 @@ function deleteData(e){
     e.parentElement.parentElement.remove();
     allData.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem('userData', JSON.stringify(allData));
-}
+};
+
 (()=>{
     allData = JSON.parse(localStorage.getItem('userData')) || [];
     displayData();
 })()
 
-
+let printPages = document.querySelector('#printPages');
+printPage.addEventListener('click', function(){
+    window.print();
+});
