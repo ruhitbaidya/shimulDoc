@@ -105,13 +105,3 @@ function deleteData(e){
 })()
 
 
-// content print 
-// print preview
-let mainContentPrint = document.querySelector('#mainContentPrint');
-let printPage = document.querySelector('#printPage');
-printPage.addEventListener('click', function(){
-    mainContentPrint.classList.add('d-block')
-    formContent.classList.add('d-block');
-    formContent.classList.remove('d-none');
-    mainContent.classList.add('d-block');
-});
