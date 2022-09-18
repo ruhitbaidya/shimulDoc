@@ -105,7 +105,7 @@ function displayData(){
                 <td>${data.SELECT}</td>
                 <td>${data.DATE}</td>
                 <td>${data.PNONE}</td>
-                <td>${data.SUBJ}Taka</td>
+                <td>${data.SUBJ}</td>
             </tr>
         `
     });
@@ -117,13 +117,16 @@ function deleteData(e){
     allData.splice(e.parentElement.parentElement.id, 1);
     localStorage.setItem('userData', JSON.stringify(allData));
 };
-
-(()=>{
-    allData = JSON.parse(localStorage.getItem('userData')) || [];
-    displayData();
-})()
-
+// javascript print
 let printPages = document.querySelector('#printPages');
 printPage.addEventListener('click', function(){
     window.print();
 });
+
+
+
+(()=>{
+    allData = JSON.parse(localStorage.getItem('userData')) || [];
+    displayData();
+})();
+
