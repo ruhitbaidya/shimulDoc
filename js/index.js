@@ -109,7 +109,7 @@ function displayData(){
             </tr>
         `
     });
- 
+    searchContent()
 }
 
 function deleteData(e){
@@ -123,7 +123,24 @@ printPage.addEventListener('click', function(){
     window.print();
 });
 
-
+//javascript search fields
+function searchContent(){
+    let fieldsText = document.querySelector('#searchfields');
+    fieldsText.addEventListener('keyup', function(){
+        let tagFind = displayDatas.getElementsByTagName('tr');
+        for(let i =0; i<tagFind.length; i++){
+            let td = tagFind[i].getElementsByTagName('td')[2];
+            if(td){
+                td = td.textContent || td.innerText;
+                if(td.indexOf(fieldsText.value) > -1){
+                    tagFind[i].style.display = '';
+                }else{
+                    tagFind[i].style.display = 'none';
+                }
+            }
+        }
+    });  
+};
 
 (()=>{
     allData = JSON.parse(localStorage.getItem('userData')) || [];
